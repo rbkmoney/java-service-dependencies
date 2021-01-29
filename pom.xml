@@ -180,11 +180,6 @@
                 <artifactId>rbk-http-client</artifactId>
                 <version>${rbk-http-client.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.rbkmoney</groupId>
-                <artifactId>spring-boot-starter-metrics-statsd</artifactId>
-                <version>${spring-statsd.version}</version>
-            </dependency>
 
         </dependencies>
     </dependencyManagement>
