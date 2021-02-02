@@ -104,6 +104,55 @@
                 </repository>
             </repositories>
         </profile>
+        <profile>
+            <id>public</id>
+            <activation>
+                <property>
+                    <name>env.MVN_PROFILE</name>
+                    <value>public</value>
+                </property>
+            </activation>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>${pubSnapRepoId}</id>
+                    <url>${pubSnapRepo}</url>
+                </snapshotRepository>
+                <repository>
+                    <id>${pubRepoId}</id>
+                    <url>${pubRepo}</url>
+                </repository>
+            </distributionManagement>
+            <repositories>
+                <repository>
+                    <id>${pubSnapRepoId}</id>
+                    <url>${pubSnapRepo}</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.7</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>${pubStagingRepoId}</serverId>
+                            <nexusUrl>${pubStagingRepo}</nexusUrl>
+                            <autoReleaseAfterClose>${autoReleaseAfterClose}</autoReleaseAfterClose>
+                            <stagingProgressTimeoutMinutes>${stagingProgressTimeoutMinutes}</stagingProgressTimeoutMinutes>
+                            <keepStagingRepositoryOnCloseRuleFailure>${keepStagingRepositoryOnCloseRuleFailure}</keepStagingRepositoryOnCloseRuleFailure>
+                            <keepStagingRepositoryOnFailure>${keepStagingRepositoryOnFailure}</keepStagingRepositoryOnFailure>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <dependencyManagement>
